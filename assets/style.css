@@ -1,0 +1,43 @@
+#game, #screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#yes_no_Prompt {
+    visibility: hidden;
+    width: 25em;
+}
+
+#yes_no {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 1em;
+    visibility: hidden;
+}
+
+#map {
+    height: 40em;
+    width: 60em;
+    margin-top: 5em;
+
+    background-image: url(./OREG_NHT_displaymap.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 0;
+
+    border: solid 3px black;
+}
+
+#player {
+    position: relative;
+    top: -14em;
+    left: 24.5em;
+
+    width: 5em;
+    height: 5em;
+
+}
