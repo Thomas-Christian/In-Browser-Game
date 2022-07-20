@@ -1,19 +1,71 @@
-var options = [
-    "Mehhoy",
-    "beep",
-    "blah"
+let playerLocation = 0
+
+const options = [
+
+    optionOne = {
+
+        yes: function() {
+            healthNumber.innerHTML = "85"
+        }, 
+
+        prompt: "You come across a bandit, do you try to fight them off?",
+
+    },
+
+    optionTwo = {
+        yes: function() {
+            healthNumber.innerHTML = "35"
+        }, 
+        prompt: "You come across a river, do you try to cross?",
+
+
+    }, 
+
+    optionThree = {
+        yes: function() {
+            healthNumber.innerHTML = "35"
+        }, 
+        prompt: "three?",
+
+
+    }, 
 ]
 
-let randomElement = options[1]
+const locations = [
 
+    scottsbluff = {
+        top: '-21.5em',
+        left: '7em'
+    },
+
+    casper = {
+        top: '-24.6em',
+        left: '2.3em'
+    },
+
+    twinFalls = {
+        top: '-26em',
+        left: '-12.8em'
+    },
+
+    portland = []
+]
 
 // different options 
-async function setPromptText(randomElement) {
+async function setPromptText() {
 
-    //await pickOption()
-    document.getElementById("yes_no_Prompt").innerHTML = randomElement;
+    document.getElementById("yes_no_Prompt").innerHTML = options[playerLocation].prompt;
 
 }
+
+function trackLocation() {
+
+    options[playerLocation].yes();
+
+    moveCharacter();
+}
+
+
 
 
 
@@ -22,8 +74,16 @@ let screen = document.getElementById('screen');
 let player = document.createElement('img');
 let gameScreen = document.getElementById('game');
 let playButton = document.getElementById('play');
+let yesButton = document.getElementById('yes')
+
+let health = document.getElementById('healthNumber');
 
 playButton.addEventListener('click', playGame);
+
+yesButton.addEventListener('click', trackLocation)
+
+
+
     
 async function playGame() {
 
@@ -35,6 +95,18 @@ async function playGame() {
         gameScreen.append(player);
 
         continueJourney()
+}
+
+async function moveCharacter() {
+    
+    player.style.top = locations[playerLocation].top
+    player.style.left = locations[playerLocation].left
+
+    playerLocation = (playerLocation + 1)
+
+    console.log(playerLocation)
+
+    await setPromptText();
 
 }
 
