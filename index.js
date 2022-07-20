@@ -8,16 +8,24 @@ const options = [
             healthNumber.innerHTML = "85"
         }, 
 
-        prompt: "You come across a bandit, do you try to fight them off?",
+        no: function() {
+            healthNumber.innerHTML = "100"
+        }, 
+
+        prompt: "You come across a bandit, do you try to fight them off?"
 
     },
 
     optionTwo = {
         yes: function() {
-            healthNumber.innerHTML = "35"
+            healthNumber.innerHTML = "75"
         }, 
-        prompt: "You come across a river, do you try to cross?",
 
+        no: function() {
+            healthNumber.innerHTML = "100"
+        }, 
+
+        prompt: "You come across a river, do you try to cross?"
 
     }, 
 
@@ -25,9 +33,8 @@ const options = [
         yes: function() {
             healthNumber.innerHTML = "35"
         }, 
-        prompt: "three?",
 
-
+        prompt: "three?"
     }, 
 ]
 
@@ -45,7 +52,7 @@ const locations = [
 
     twinFalls = {
         top: '-26em',
-        left: '-12.8em'
+        left: '-12.7em'
     },
 
     portland = []
@@ -58,10 +65,16 @@ async function setPromptText() {
 
 }
 
-function trackLocation() {
+function handlePlayerResponse(e) {
 
-    options[playerLocation].yes();
+    console.log(e.srcElement.id)
 
+    if (e.srcElement.id == 'yes') {
+        options[playerLocation].yes();
+    } else {
+        options[playerLocation].no();
+    }
+        
     moveCharacter();
 }
 
@@ -75,12 +88,14 @@ let player = document.createElement('img');
 let gameScreen = document.getElementById('game');
 let playButton = document.getElementById('play');
 let yesButton = document.getElementById('yes')
+let noButton = document.getElementById('no')
 
 let health = document.getElementById('healthNumber');
 
 playButton.addEventListener('click', playGame);
 
-yesButton.addEventListener('click', trackLocation)
+yesButton.addEventListener('click', handlePlayerResponse);
+noButton.addEventListener('click', handlePlayerResponse);
 
 
 
