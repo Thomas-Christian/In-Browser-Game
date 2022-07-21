@@ -1,40 +1,62 @@
 let playerLocation = 0
 
+let playerHealth = 100
+
 const options = [
 
     optionOne = {
-
         yes: function() {
-            healthNumber.innerHTML = "85"
+            playerHealth = (playerHealth - 15)
+            healthNumber.innerHTML = playerHealth
         }, 
-
         no: function() {
-            healthNumber.innerHTML = "100"
+            healthNumber.innerHTML = playerHealth
         }, 
-
         prompt: "You come across a bandit, do you try to fight them off?"
-
     },
 
     optionTwo = {
         yes: function() {
-            healthNumber.innerHTML = "75"
+            playerHealth = (playerHealth - 20)
+            healthNumber.innerHTML = playerHealth
         }, 
-
         no: function() {
-            healthNumber.innerHTML = "100"
+            healthNumber.innerHTML = playerHealth
         }, 
-
         prompt: "You come across a river, do you try to cross?"
-
     }, 
 
     optionThree = {
         yes: function() {
-            healthNumber.innerHTML = "35"
+            playerHealth = (playerHealth - 10)
+            healthNumber.innerHTML = playerHealth
         }, 
-
+        no: function() {
+            healthNumber.innerHTML = playerHealth
+        },
         prompt: "three?"
+    },
+
+    optionFour = {
+        yes: function() {
+            playerHealth = (playerHealth - 20)
+            healthNumber.innerHTML = playerHealth
+        }, 
+        no: function() {
+            healthNumber.innerHTML = playerHealth
+        }, 
+        prompt: "Yaga?"
+    }, 
+
+    optionFive = {
+        yes: function() {
+            playerHealth = (playerHealth - 20)
+            healthNumber.innerHTML = playerHealth
+        }, 
+        no: function() {
+            healthNumber.innerHTML = playerHealth
+        }, 
+        prompt: "Yasdasad?"
     }, 
 ]
 
@@ -55,14 +77,20 @@ const locations = [
         left: '-12.7em'
     },
 
-    portland = []
+    pendleton = {
+        top: '-35.5em',
+        left: '-19em'
+    },
+
+    portland = {
+        top: '-37em',
+        left: '-25.5em'
+    }
 ]
 
 // different options 
 async function setPromptText() {
-
-    document.getElementById("yes_no_Prompt").innerHTML = options[playerLocation].prompt;
-
+    document.getElementById("yes_no_Prompt").innerHTML = options[Math.floor(options.length * Math.random())].prompt;
 }
 
 function handlePlayerResponse(e) {
@@ -77,10 +105,6 @@ function handlePlayerResponse(e) {
         
     moveCharacter();
 }
-
-
-
-
 
 // play game functions
 let screen = document.getElementById('screen');
@@ -97,10 +121,9 @@ playButton.addEventListener('click', playGame);
 yesButton.addEventListener('click', handlePlayerResponse);
 noButton.addEventListener('click', handlePlayerResponse);
 
-
-
-    
 async function playGame() {
+
+    healthNumber.innerHTML = playerHealth
 
     playButton.remove();
         
