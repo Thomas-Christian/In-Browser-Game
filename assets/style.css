@@ -40,9 +40,9 @@
 }
 
 #map {
-    height: 40em;
-    width: 60em;
-    margin-top: 2.5em;
+    height: 35em;
+    width: 55em;
+    margin-top: 1.5em;
 
     background-image: url(./OREG_NHT_displaymap.jpg);
     background-size: cover;
@@ -55,10 +55,12 @@
 
 #player {
     position: relative;
-    top: -14em;
-    left: 24.5em;
+    top: -12.3em;
+    left: 22.35em;
 
     width: 5em;
     height: 5em;
+
+    transition: all 2s ease-in-out;
 
 }

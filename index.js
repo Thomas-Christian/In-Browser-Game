@@ -63,28 +63,28 @@ const options = [
 const locations = [
 
     scottsbluff = {
-        top: '-21.5em',
-        left: '7em'
+        top: '-19.25em',
+        left: '6.35em'
     },
 
     casper = {
-        top: '-24.6em',
-        left: '2.3em'
+        top: '-22em',
+        left: '2.1em'
     },
 
     twinFalls = {
-        top: '-26em',
-        left: '-12.7em'
+        top: '-23.45em',
+        left: '-11.7em'
     },
 
     pendleton = {
-        top: '-35.5em',
-        left: '-19em'
+        top: '-32em',
+        left: '-17.2em'
     },
 
     portland = {
-        top: '-37em',
-        left: '-25.5em'
+        top: '-33.5em',
+        left: '-23.3em'
     }
 ]
 
