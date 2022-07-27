@@ -6,13 +6,13 @@ const options = [
 
     optionOne = {
         yes: function() {
-            playerHealth = (playerHealth - 15)
+            playerHealth = (playerHealth - 10)
             healthNumber.innerHTML = playerHealth
         }, 
         no: function() {
             healthNumber.innerHTML = playerHealth
         }, 
-        prompt: "You come across a bandit, do you try to fight them off?"
+        prompt: "You come across a bandit, do you attempt to fight them off?"
     },
 
     optionTwo = {
@@ -28,35 +28,35 @@ const options = [
 
     optionThree = {
         yes: function() {
-            playerHealth = (playerHealth - 10)
+            playerHealth = (playerHealth - 20)
             healthNumber.innerHTML = playerHealth
         }, 
         no: function() {
             healthNumber.innerHTML = playerHealth
         },
-        prompt: "three?"
+        prompt: "You come across a mountian lion, do you try to scare it off?"
     },
 
     optionFour = {
         yes: function() {
-            playerHealth = (playerHealth - 20)
+            playerHealth = (playerHealth + 10)
             healthNumber.innerHTML = playerHealth
         }, 
         no: function() {
             healthNumber.innerHTML = playerHealth
         }, 
-        prompt: "Yaga?"
+        prompt: "You come across an enticing berry bush, will you eat some?"
     }, 
 
     optionFive = {
         yes: function() {
-            playerHealth = (playerHealth - 20)
+            playerHealth = (playerHealth)
             healthNumber.innerHTML = playerHealth
         }, 
         no: function() {
             healthNumber.innerHTML = playerHealth
         }, 
-        prompt: "Yasdasad?"
+        prompt: "You come across a rickety bridge, do you cross it"
     }, 
 ]
 
