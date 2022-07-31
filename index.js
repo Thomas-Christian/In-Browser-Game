@@ -2,15 +2,20 @@ let playerLocation = 0
 
 let playerHealth = 100
 
+var goodAudio = new Audio('assets/8-Bit WIN.wav')
+var badAudio = new Audio('assets/8-Bit OUCH.wav')
+
 const options = [
 
     optionOne = {
         yes: function() {
             playerHealth = (playerHealth - 10)
             healthNumber.innerHTML = playerHealth
+            badAudio.play()
         }, 
         no: function() {
             healthNumber.innerHTML = playerHealth
+            goodAudio.play()
         }, 
         prompt: "You come across a bandit, do you attempt to fight them off?"
     },
@@ -19,9 +24,11 @@ const options = [
         yes: function() {
             playerHealth = (playerHealth - 20)
             healthNumber.innerHTML = playerHealth
+            badAudio.play()
         }, 
         no: function() {
             healthNumber.innerHTML = playerHealth
+            goodAudio.play()
         }, 
         prompt: "You come across a river, do you try to cross?"
     }, 
@@ -30,9 +37,11 @@ const options = [
         yes: function() {
             playerHealth = (playerHealth - 20)
             healthNumber.innerHTML = playerHealth
+            badAudio.play()
         }, 
         no: function() {
             healthNumber.innerHTML = playerHealth
+            goodAudio.play()
         },
         prompt: "You come across a mountian lion, do you try to scare it off?"
     },
@@ -44,6 +53,7 @@ const options = [
         }, 
         no: function() {
             healthNumber.innerHTML = playerHealth
+            goodAudio.play()
         }, 
         prompt: "You come across an enticing berry bush, will you eat some?"
     }, 
@@ -52,11 +62,13 @@ const options = [
         yes: function() {
             playerHealth = (playerHealth)
             healthNumber.innerHTML = playerHealth
+            goodAudio.play()
         }, 
         no: function() {
             healthNumber.innerHTML = playerHealth
+            goodAudio.play()
         }, 
-        prompt: "You come across a rickety bridge, do you cross it"
+        prompt: "You come across a rickety bridge, do you cross it?"
     }, 
 ]
 
@@ -90,7 +102,8 @@ const locations = [
 
 // different options 
 async function setPromptText() {
-    document.getElementById("yes_no_Prompt").innerHTML = options[Math.floor(options.length * Math.random())].prompt;
+    let chosenPrompt = document.getElementById("yes_no_Prompt").innerHTML = options[Math.floor(options.length * Math.random())].prompt;
+
 }
 
 function handlePlayerResponse(e) {
@@ -106,7 +119,6 @@ function handlePlayerResponse(e) {
     moveCharacter();
 }
 
-// play game functions
 let screen = document.getElementById('screen');
 let player = document.createElement('img');
 let gameScreen = document.getElementById('game');
@@ -149,7 +161,8 @@ async function moveCharacter() {
 }
 
 async function continueJourney() {
-
+    
+    document.getElementById("objective").remove()
     document.getElementById("yes_no").style.visibility = "visible";
     document.getElementById("yes_no_Prompt").style.visibility = "visible";
 
