@@ -50,10 +50,12 @@ const options = [
         yes: function() {
             playerHealth = (playerHealth + 10)
             healthNumber.innerHTML = playerHealth
+            goodAudio.play()
         }, 
         no: function() {
+            playerHealth = (playerHealth - 10)
             healthNumber.innerHTML = playerHealth
-            goodAudio.play()
+            badAudio.play()
         }, 
         prompt: "You come across an enticing berry bush, will you eat some?"
     }, 
@@ -103,6 +105,14 @@ const locations = [
 // different options 
 async function setPromptText() {
     let chosenPrompt = document.getElementById("yes_no_Prompt").innerHTML = options[Math.floor(options.length * Math.random())].prompt;
+
+    // end 
+    if(playerLocation == 5)
+    {
+        document.getElementById("yes_no").style.visibility = "hidden"
+
+        document.getElementById("yes_no_Prompt").innerHTML = "You made it to Oregon with " + playerHealth + " health!"
+    }
 
 }
 
