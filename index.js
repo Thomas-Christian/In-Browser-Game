@@ -1,11 +1,11 @@
 let playerLocation = 0
-
+let randomIndex = 0
 let playerHealth = 100
 
 var goodAudio = new Audio('assets/8-Bit WIN.wav')
 var badAudio = new Audio('assets/8-Bit OUCH.wav')
 
-const options = [
+var options = [
 
     optionOne = {
         yes: function() {
@@ -102,9 +102,17 @@ const locations = [
     }
 ]
 
+async function removeSelection(deleteMe) {
+    options.splice(deleteMe, 1) 
+}
+
 // different options 
 async function setPromptText() {
-    let chosenPrompt = document.getElementById("yes_no_Prompt").innerHTML = options[Math.floor(options.length * Math.random())].prompt;
+
+    let chooseIndex = Math.floor(options.length * Math.random())
+    let randomIndex = chooseIndex
+    let chosenOption = options[chooseIndex];
+    let chosenPrompt = document.getElementById("yes_no_Prompt").innerHTML = chosenOption.prompt
 
     // end 
     if(playerLocation == 5)
@@ -121,9 +129,9 @@ function handlePlayerResponse(e) {
     console.log(e.srcElement.id)
 
     if (e.srcElement.id == 'yes') {
-        options[playerLocation].yes();
+        options[randomIndex].yes();
     } else {
-        options[playerLocation].no();
+        options[randomIndex].no();
     }
         
     moveCharacter();
@@ -167,6 +175,10 @@ async function moveCharacter() {
     console.log(playerLocation)
 
     await setPromptText();
+
+    await removeSelection(randomIndex);
+
+    console.log(options)
 
 }
 
