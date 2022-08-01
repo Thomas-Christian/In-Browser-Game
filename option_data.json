@@ -1,0 +1,43 @@
+{"options": [
+
+    {
+        "prompt": "You come across a bandit, do you attempt to fight them off?",
+        "yes": -10,
+        "yesAudio": 1,
+        "yesResponse": "They stabbed you!",
+        "no": 0,
+        "noAudio": 0,
+        "noResponse": "You scared them off"       
+    },
+
+    {
+        "prompt": "You come across a river, do you try to cross?",
+        "yes": -20,
+        "yesAudio": 1,
+        "yesResponse": "Your child drowned!",
+        "no": 0,
+        "noAudio": 0,
+        "noResponse": "You float across safely."       
+    },
+
+    {
+        "prompt": "You come across a snake, do you attempt to fight them off?",
+        "yes": -10,
+        "yesAudio": 1,
+        "yesResponse": "They stabbed you!",
+        "no": 0,
+        "noAudio": 0,
+        "noResponse": "You scared them off"       
+    },
+    
+    {
+        "prompt": "You come across a tiger, do you attempt to fight them off?",
+        "yes": -10,
+        "yesAudio": 1,
+        "yesResponse": "They stabbed you!",
+        "no": 0,
+        "noAudio": 0,
+        "noResponse": "You scared them off"       
+    }
+
+]}

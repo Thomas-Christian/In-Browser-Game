@@ -1,13 +1,17 @@
 let playerLocation = 0
-let randomIndex 
+var randomIndex 
 let playerHealth = 100
 
 var goodAudio = new Audio('assets/8-Bit WIN.wav')
 var badAudio = new Audio('assets/8-Bit OUCH.wav')
 
-var options = [
+var options = []
 
-    optionOne = {
+async function initializeOptions() {
+
+    options = [
+        
+    {
         yes: function() {
             playerHealth = (playerHealth - 10)
             healthNumber.innerHTML = playerHealth
@@ -20,7 +24,20 @@ var options = [
         prompt: "You come across a bandit, do you attempt to fight them off?"
     },
 
-    optionTwo = {
+    {
+        yes: function() {
+            playerHealth = (playerHealth - 10)
+            healthNumber.innerHTML = playerHealth
+            badAudio.play()
+        }, 
+        no: function() {
+            healthNumber.innerHTML = playerHealth
+            goodAudio.play()
+        }, 
+        prompt: "You come across a sleeping snake, do you attempt to sneak around?"
+    },
+
+    {
         yes: function() {
             playerHealth = (playerHealth - 20)
             healthNumber.innerHTML = playerHealth
@@ -33,7 +50,7 @@ var options = [
         prompt: "You come across a river, do you try to cross?"
     }, 
 
-    optionThree = {
+    {
         yes: function() {
             playerHealth = (playerHealth - 20)
             healthNumber.innerHTML = playerHealth
@@ -46,7 +63,7 @@ var options = [
         prompt: "You come across a mountian lion, do you try to scare it off?"
     },
 
-    optionFour = {
+    {
         yes: function() {
             playerHealth = (playerHealth + 10)
             healthNumber.innerHTML = playerHealth
@@ -60,7 +77,7 @@ var options = [
         prompt: "You come across an enticing berry bush, will you eat some?"
     }, 
 
-    optionFive = {
+    {
         yes: function() {
             playerHealth = (playerHealth)
             healthNumber.innerHTML = playerHealth
@@ -71,8 +88,9 @@ var options = [
             goodAudio.play()
         }, 
         prompt: "You come across a rickety bridge, do you cross it?"
-    }, 
-]
+    } 
+    ]
+}
 
 const locations = [
 
@@ -109,12 +127,16 @@ async function removeSelection(deleteMe) {
 // different options 
 async function setPromptText() {
 
-    let chooseIndex = Math.floor(options.length * Math.random())
+    console.log(options)
+
+    let chooseIndex = Math.floor((options.length - 1) * Math.random())
     randomIndex = chooseIndex
     let chosenOption = options[chooseIndex];
     let chosenPrompt = document.getElementById("yes_no_Prompt").innerHTML = chosenOption.prompt
 
-    console.log("CHOSEN OPTION " + chooseIndex)
+    console.log("CHOSEN OPTION " + chosenOption.prompt)
+
+    await removeSelection(randomIndex)
 
     // end 
     if(playerLocation == 5)
@@ -126,17 +148,23 @@ async function setPromptText() {
 
 }
 
-function handlePlayerResponse(e) {
+async function handlePlayerResponse(e) {
 
     console.log(e.srcElement.id)
-    console.log(randomIndex)
 
     if (e.srcElement.id == 'yes') {
         options[randomIndex].yes();
-    } else {
+        moveCharacter();
+
+    } else if (e.srcElement.id == 'no'){
         options[randomIndex].no();
+        moveCharacter();
+        
+    } else if (e.srcElement.id == 'play'){
+        playGame();
     }
-    moveCharacter();
+
+    await setPromptText();
 }
 
 let screen = document.getElementById('screen');
@@ -148,12 +176,14 @@ let noButton = document.getElementById('no')
 
 let health = document.getElementById('healthNumber');
 
-playButton.addEventListener('click', playGame);
+playButton.addEventListener('click', handlePlayerResponse);
 
 yesButton.addEventListener('click', handlePlayerResponse);
 noButton.addEventListener('click', handlePlayerResponse);
 
 async function playGame() {
+
+    await initializeOptions();
 
     healthNumber.innerHTML = playerHealth
 
@@ -164,7 +194,8 @@ async function playGame() {
 
         gameScreen.append(player);
 
-        continueJourney()
+        continueJourney();
+
 }
 
 async function moveCharacter() {
@@ -176,12 +207,6 @@ async function moveCharacter() {
 
     console.log(playerLocation)
 
-    await setPromptText();
-
-    await removeSelection(randomIndex);
-
-    console.log(options)
-
 }
 
 async function continueJourney() {
@@ -190,9 +215,6 @@ async function continueJourney() {
     document.getElementById("yes_no").style.visibility = "visible";
     document.getElementById("health").style.visibility = "visible";
     document.getElementById("yes_no_Prompt").style.visibility = "visible";
-
-    setPromptText();
-
 }
 
     
