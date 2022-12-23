@@ -1,9 +1,24 @@
-#game, #screen {
-    padding: .2em;
+@import "config";
+
+@mixin flexy {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     align-items: center;
+    justify-content: center;
+  }
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: $fonts;
+}
+
+#game, #screen {
+    @include flexy;
+    padding: .25em;
+    flex-direction: column;
 }
 
 #healthNumber {
@@ -11,20 +26,19 @@
 }
 
 #health {
-    display: flex;
+    @include flexy;
     flex-direction: row;
     padding: .5em;
     visibility: hidden;
-    
 }
+
 #yes_no_Prompt {
     visibility: hidden;
 }
 
 #yes_no {
-    display: flex;
+    @include flexy;
     flex-direction: row;
-    justify-content: center;
     padding: .2em;
     visibility: hidden;
 }
@@ -50,7 +64,7 @@
     width: 55em;
     margin-top: 1.2em;
 
-    background-image: url(./OREG_NHT_displaymap.jpg);
+    background-image: url(../OREG_NHT_displaymap.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -68,5 +82,4 @@
     height: 5em;
 
     transition: all 2s ease-in-out;
-
 }
